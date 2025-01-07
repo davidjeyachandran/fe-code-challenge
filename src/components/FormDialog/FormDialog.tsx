@@ -1,17 +1,11 @@
 import React, { useState } from 'react';
 import { Dialog, DialogContent, DialogTitle, TextField, Button, Box, DialogActions, Alert } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
-
-const endpoint = 'https://l94wc2001h.execute-api.ap-southeast-2.amazonaws.com/prod/fake-auth';
+import useSendData from '../../hooks/useSendData';
 
 interface FormDialogProps {
     open: boolean;
     onClose: () => void;
-}
-
-interface FormData {
-    name: string;
-    email: string;
 }
 
 const validEmail = (email: string): boolean => {
@@ -19,37 +13,14 @@ const validEmail = (email: string): boolean => {
     return re.test(email);
 }
 
-const sendData = async (data: FormData) => {
-
-    const response = await fetch(endpoint, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-    });
-
-    const responseData = await response.json();
-
-    if (!response.ok) {
-        console.log('Failed to send data', responseData);
-        throw new Error(responseData.errorMessage || 'Failed to send data');
-    }
-
-    return responseData;
-}
-
 const FormDialog: React.FC<FormDialogProps> = ({ open, onClose }) => {
     const [fullnameError, setFullnameError] = useState('');
     const [emailError, setEmailError] = useState('');
     const [emailConfirmError, setEmailConfirmError] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
-    const [success, setSuccess] = useState(false);
-    const [sendDataError, setSendDataError] = useState("");
+    const { isLoading, success, sendDataError, sendDataRequest, setSuccess } = useSendData();
 
     const handleSend = (event: React.FormEvent) => {
         event.preventDefault();
-        setIsLoading(true);
         const formData = new FormData(event.currentTarget as HTMLFormElement);
         const fullname = formData.get('fullname') as string;
         const email = formData.get('email') as string;
@@ -85,19 +56,16 @@ const FormDialog: React.FC<FormDialogProps> = ({ open, onClose }) => {
         }
 
         if (hasError) {
-            setIsLoading(false);
             return;
         }
 
-        sendData({ name: fullname, email }).then((response) => {
-            setIsLoading(false);
-            console.log('Data sent successfully', response);
-            onClose();
-            setSuccess(true);
-        }).catch((error) => {
-            setIsLoading(false);
-            setSendDataError(error.message);
+        sendDataRequest({ name: fullname, email }).then((responseData) => {
+            console.log({ sendDataError, responseData })
+            if (responseData === "Registered") {
+                onClose();
+            }
         })
+
     };
 
     const handleSuccessClose = () => {
@@ -105,6 +73,7 @@ const FormDialog: React.FC<FormDialogProps> = ({ open, onClose }) => {
         onClose();
     };
 
+    console.log({ isLoading, success, sendDataError, sendDataRequest, setSuccess })
     return (
         <>
             <Dialog open={open} onClose={onClose} maxWidth="xs" slotProps={{ backdrop: { style: { backgroundColor: 'rgba(0, 0, 0, 0.7)' } } }}>

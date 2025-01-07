@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 const endpoint = 'https://l94wc2001h.execute-api.ap-southeast-2.amazonaws.com/prod/fake-auth';
 
-interface FormData {
+export interface FormData {
     name: string;
     email: string;
 }
@@ -19,7 +19,6 @@ const sendData = async (data: FormData) => {
     const responseData = await response.json();
 
     if (!response.ok) {
-        console.log('Failed to send data', responseData);
         throw new Error(responseData.errorMessage || 'Failed to send data');
     }
 
@@ -36,10 +35,12 @@ const useSendData = () => {
         setSendDataError("");
 
         try {
-            await sendData(data);
+            const response = await sendData(data);
             setSuccess(true);
+            return response;
         } catch (error: any) {
             setSendDataError(error.message);
+            return error.message;
         } finally {
             setIsLoading(false);
         }
