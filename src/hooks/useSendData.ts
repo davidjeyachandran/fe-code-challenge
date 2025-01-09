@@ -28,25 +28,24 @@ const sendData = async (data: FormData) => {
 const useSendData = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [success, setSuccess] = useState(false);
-    const [sendDataError, setSendDataError] = useState("");
 
     const sendDataRequest = async (data: FormData) => {
         setIsLoading(true);
-        setSendDataError("");
+
 
         try {
             const response = await sendData(data);
             setSuccess(true);
             return response;
         } catch (error: any) {
-            setSendDataError(error.message);
-            return error.message;
+            // setSendDataError(error.message);
+            throw error; // Throw the error instead of returning it
         } finally {
             setIsLoading(false);
         }
     };
 
-    return { isLoading, success, sendDataError, sendDataRequest, setSuccess };
+    return { isLoading, success, sendDataRequest, setSuccess };
 };
 
 export default useSendData;
