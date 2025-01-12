@@ -1,47 +1,75 @@
-# Getting Started with Create React App
+# Frontend Code Challenge
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React application featuring a form dialog with validation and API integration.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- Material-UI based dialog form
+- Form validation
+- API integration with error handling
+- TypeScript support
+- Jest & React Testing Library tests
 
-### `yarn start`
+## functionality
+- simple yet clean homepage for them that allow users to enter their name and email to receive email invitations.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Visual Requirements
+- The UI should occupy the full height of the screen.
+- Shows a fixed header that is always on top of the window and a footer that is always on the bottom of the window (assuming a reasonable window height).
+- The page content is sandwiched in the middle, containing just a heading, a small piece of text and a button to request an invite.
+- A rough mockup of the basic layout is attached. While preserving this layout on desktop, you may style it however you wish, with or without images.
+- The solution must be mobile friendly (users won't need to pinch and zoom on their mobile devices).
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `yarn test`
+## Getting Started
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Prerequisites
 
-### `yarn build`
+- Node.js >= 18.x
+- yarn >= 1.22.0
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Installation
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+yarn
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Available Scripts
 
-### `yarn eject`
+- `yarn start` - Runs the app in development mode at [http://localhost:3000](http://localhost:3000)
+- `yarn test` - Launches the test runner in interactive watch mode
+- `yarn run build` - Builds the app for production to the `build` folder
+- `yarn run eject` - Remove the single build dependency
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Project Structure
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+src/
+  ├── components/
+  │   └── FormDialog/       # Form dialog component with tests
+  ├── hooks/               
+  │   ├── useSendData/     # API integration hook
+  │   └── useFormValidation/# Form validation hook
+  └── App.tsx              # Root component
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Testing
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+The project uses Jest and React Testing Library for testing. Run the tests with:
 
-## Learn More
+```bash
+yarn test
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Built With
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-# fe-code-challenge
+- React 18
+- TypeScript
+- Material-UI
+- React Testing Library
+
+## Development Notes
+
+- Form validation is handled by a custom hook
+- API calls are managed through a dedicated hook
+- Tests cover both success and error scenarios
