@@ -1,6 +1,14 @@
 # Frontend Code Challenge
 
 A React application featuring a form dialog with validation and API integration.
+See the live demo here
+https://davidjeyachandran.github.io/fe-code-challenge/
+
+
+## Installation - Quick Start
+
+```yarn```
+```yarn start```
 
 ## Features
 
@@ -20,19 +28,10 @@ A React application featuring a form dialog with validation and API integration.
 - A rough mockup of the basic layout is attached. While preserving this layout on desktop, you may style it however you wish, with or without images.
 - The solution must be mobile friendly (users won't need to pinch and zoom on their mobile devices).
 
-
-## Getting Started
-
 ### Prerequisites
 
 - Node.js >= 18.x
 - yarn >= 1.22.0
-
-### Installation
-
-```bash
-yarn
-```
 
 ### Available Scripts
 
@@ -63,7 +62,7 @@ yarn test
 
 ## Built With
 
-- React 18
+- React 19
 - TypeScript
 - Material-UI
 - React Testing Library
