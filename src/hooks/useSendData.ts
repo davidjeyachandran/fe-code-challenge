@@ -38,8 +38,7 @@ const useSendData = () => {
             setSuccess(true);
             return response;
         } catch (error: any) {
-            // setSendDataError(error.message);
-            throw error; // Throw the error instead of returning it
+            throw error;
         } finally {
             setIsLoading(false);
         }

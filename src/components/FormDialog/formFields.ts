@@ -10,12 +10,12 @@ export const formFields = [
         id: 'email',
         name: 'email',
         label: 'Email Address',
-        type: 'email',
+        type: 'text',
     },
     {
         id: 'emailConfirm',
         name: 'emailConfirm',
         label: 'Confirm Email Address',
-        type: 'email',
+        type: 'text',
     }
 ] as const;

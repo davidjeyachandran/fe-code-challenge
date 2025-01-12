@@ -58,9 +58,12 @@ describe('FormDialog with validation failures', () => {
 
         userEvent.click(screen.getByRole('button', { name: /send/i }));
 
-        expect(screen.getByText('Full name is required')).toBeInTheDocument();
+        await waitFor(() => {
+            expect(screen.getByText('Full name is required')).toBeInTheDocument();
+        });
         expect(screen.getByText('Email is invalid')).toBeInTheDocument();
         expect(screen.getByText('Emails do not match')).toBeInTheDocument();
+
     });
 });
 

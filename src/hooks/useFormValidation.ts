@@ -21,6 +21,7 @@ export const useFormValidation = () => {
         };
 
         if (!fullname) newErrors.fullname = 'Name is required.';
+        if (fullname.length < 3) newErrors.fullname = 'Full name needs to be at least 3 characters long.';
         if (!email) newErrors.email = 'Email Address is required.';
         else if (!validEmail(email)) newErrors.email = 'Invalid email address.';
         if (!emailConfirm) newErrors.emailConfirm = 'Confirm Email Address is required.';
