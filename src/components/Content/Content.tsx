@@ -16,7 +16,6 @@ const Content: React.FC<ContentProps> = ({ title, subtitle, buttonText }) => {
     };
 
     const handleClose = () => {
-        console.log('close');
         setOpen(false);
     };
 
