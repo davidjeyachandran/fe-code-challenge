@@ -6,19 +6,17 @@ const validEmail = (email: string): boolean => {
     return re.test(email);
 };
 
+const defaultFormValues = {
+    fullname: '',
+    email: '',
+    emailConfirm: ''
+}
+
 export const useFormValidation = () => {
-    const [errors, setErrors] = useState<FormErrors>({
-        fullname: '',
-        email: '',
-        emailConfirm: ''
-    });
+    const [errors, setErrors] = useState<FormErrors>(defaultFormValues);
 
     const validateForm = (fullname: string, email: string, emailConfirm: string): boolean => {
-        const newErrors: FormErrors = {
-            fullname: '',
-            email: '',
-            emailConfirm: ''
-        };
+        const newErrors: FormErrors = defaultFormValues;
 
         if (!fullname) newErrors.fullname = 'Name is required.';
         if (fullname.length < 3) newErrors.fullname = 'Full name needs to be at least 3 characters long.';
