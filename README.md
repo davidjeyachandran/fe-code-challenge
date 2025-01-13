@@ -7,8 +7,9 @@ https://davidjeyachandran.github.io/fe-code-challenge/
 
 ## Installation - Quick Start
 
-```yarn```
-```yarn start```
+1. ```yarn```
+2. ```yarn start```
+3. Open the site on: http://localhost:3000/fe-code-challenge
 
 ## Features
 
